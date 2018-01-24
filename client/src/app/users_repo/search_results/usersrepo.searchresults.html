@@ -1,0 +1,33 @@
+<div class="row" *ngFor="let repository of searchResultInput.repositoryArray;let i=index">
+  <div *ngIf="i == 0" class="row">
+    <hr>
+    <div class="row">
+      <div class="col-xs-5 col-sm-5 col-md-6 col-lg-6">
+        <img alt="{{repository.owner.login}}" height="100" width="100"
+             itemprop="image" src="{{repository.owner.avatarUrl}}">
+      </div>
+      <div class="col-xs-7 col-sm-7 col-md-6 col-lg-6">
+        <span class="userId">{{repository.owner.login}}</span>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <span><h3>Repositories</h3></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <hr>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <p class="codeRepository">{{repository.name}}</p>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 codeDescription">
+      <p>{{repository.description}}</p>
+    </div>
+    <p class="col-xs-1 col-sm-1 col-md-1 col-lg-1">&nbsp;</p>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <p><span class="glyphicon glyphicon-star" title="Stargazers Count"></span> {{repository.starGazersCount}}</p>
+    </div>
+  </div>
+</div>

@@ -53,6 +53,7 @@ public class GitHubFacadeImpl implements GitHubFacade {
 
 	@Override
 	public int searchedCountInLastThreeMinutes(String userId) {
+		//ToDo: Brainstorm below logic when running in a cluster and nodes are in different time-zones.
 		long milliSeconds = System.currentTimeMillis() - (3 * 60 * 1000);
 		List<UserSearchLog> userSearchLogList = userSearchLogRepository.findByUserIdAndSearchedTimeGreaterThanEqual(userId, new Timestamp(milliSeconds));
 		if (userSearchLogList != null)

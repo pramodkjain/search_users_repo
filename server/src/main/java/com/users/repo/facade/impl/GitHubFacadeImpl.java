@@ -3,6 +3,7 @@ package com.users.repo.facade.impl;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -32,12 +33,15 @@ public class GitHubFacadeImpl implements GitHubFacade {
 	private UserSearchLogRepository userSearchLogRepository;
 
 	@Override
-	public List<Repository> getAllReposForAUser(String userId) throws NoRepoFoundForAUserException {
+	public List<Repository> getAllReposForAUser(String userId, boolean forkedOnly) throws NoRepoFoundForAUserException {
 		try {
 			if (StringUtils.isBlank(userId)) {
 				throw new IllegalArgumentException("userId is null!");
 			}
 			List<Repository> repositoryDTOList = callWebService(userId);
+			if (forkedOnly) {
+				repositoryDTOList = repositoryDTOList.stream().filter(p -> p.isFork()).collect(Collectors.toList());
+			}
 			return repositoryDTOList;
 		} catch (HttpClientErrorException ex) {
 			if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {

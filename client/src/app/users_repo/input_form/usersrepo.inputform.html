@@ -1,9 +1,15 @@
 <form #repoBrowserInputForm="ngForm">
   <div class="form-group row">
-    <label for="userId" class="col-sm-2 col-form-label">User Id</label>
-    <div class="col-sm-8">
+    <label for="userId" class="col-sm-3 col-form-label">User Id</label>
+    <div class="col-sm-9">
       <input type="text" [(ngModel)]="model.userId" class="form-control" id="userId" name="userId"
              placeholder="UserId" required>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="forkedOnly" class="col-sm-3">Forked Only</label>
+    <div class="col-sm-9">
+      <input type="checkbox" [(ngModel)]="model.forkedOnly"  id="forkedOnly" name="forkedOnly">
     </div>
   </div>
   <div class="form-group row text-right">
@@ -13,5 +19,6 @@
       </button>
     </div>
   </div>
+  <hr>
 </form>
 <usersrepo-searchresults [searchResultInput]="this.searchResultInput"></usersrepo-searchresults>

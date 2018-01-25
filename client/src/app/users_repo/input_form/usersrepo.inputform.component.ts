@@ -1,4 +1,4 @@
-import {Http, Headers} from '@angular/http';
+import {Headers, Http} from '@angular/http';
 import {Component} from "@angular/core";
 import {InputForm} from "./usersrepo.inputform";
 import {CommonService} from "../../common/common.service";
@@ -10,7 +10,7 @@ import {SearchResultInput} from "../usersrepo.searchresults.input";
 })
 export class UsersRepoInputFormComponent {
 
-  public model = new InputForm('');
+  public model = new InputForm('', false);
 
   public searchResultInput = new SearchResultInput(null);
 
@@ -22,7 +22,8 @@ export class UsersRepoInputFormComponent {
     console.log(JSON.stringify(this.model));
     let headers = new Headers({'Content-Type': 'application/json'});
     var userId = this.model.userId;
-    var getAllReposAPTUrl = '/api/github/users/' + userId + '/repos'
+    var getAllReposAPTUrl = '/api/github/users/'
+      + userId + '/repos?forkedOnly=' + this.model.forkedOnly;
     this.http
       .get(getAllReposAPTUrl, {headers: headers})
       .subscribe(

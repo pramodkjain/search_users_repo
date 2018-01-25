@@ -7,7 +7,7 @@ import com.users.repo.exception.NoRepoFoundForAUserException;
 
 public interface GitHubFacade {
 
-	List<Repository> getAllReposForAUser(String userId) throws NoRepoFoundForAUserException;
+	List<Repository> getAllReposForAUser(String userId,boolean forkedOnly) throws NoRepoFoundForAUserException;
 
 	int searchedCountInLastThreeMinutes(String userId);
 
